@@ -39,6 +39,39 @@
             color: #D4D4D4; 
         }
         .icon { display: inline-block; width: 24px; height: 24px; stroke-width: 2.5; stroke: currentColor; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+
+        /* --- Custom Animations & Effects --- */
+        
+        /* 1. Parallax untuk Hero Image */
+        .hero-parallax-img {
+            /* Fix the image in place */
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            /* Gantikan gambar dummy dengan URL gambar Hero */
+            background-image: url('images/hero-bg.jpg'); 
+        }
+
+        /* 2. Scroll Animation Setup (Fade-in Up) */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 3. Enhanced Glow for Elite Pricing Card */
+        /* Menggunakan @layer utility untuk memastikan custom shadow tertimpa */
+        @layer utility {
+            .hover\:shadow-intense-glow:hover {
+                box-shadow: 0 0 50px rgba(239, 68, 68, 0.8), 0 0 10px rgba(239, 68, 68, 0.3);
+            }
+        }
     </style>
 </head>
 <body>
@@ -63,17 +96,11 @@
 
     <main>
         <section class="relative h-[90vh] min-h-[800px] flex items-center justify-center pt-20 overflow-hidden text-center bg-gym-black">
-            <div class="absolute inset-0 z-0">
-                <img
-                    src="images/hero-bg.jpg" 
-                    alt="Seorang atlet yang melakukan latihan intens di gym Apex" 
-                    class="w-full h-full object-cover opacity-30" 
-                    style="min-height: 800px;" 
-                >
-                <div class="absolute inset-0 bg-gradient-to-t from-gym-black via-gym-black/40 to-transparent"></div>
+            <div class="absolute inset-0 z-0 opacity-30 hero-parallax-img" >
             </div>
+            <div class="absolute inset-0 z-0 bg-gradient-to-t from-gym-black via-gym-black/40 to-transparent"></div>
 
-            <div class="relative z-10 max-w-5xl mx-auto px-4">
+            <div class="relative z-10 max-w-5xl mx-auto px-4 fade-in-up">
                 <p class="text-lg font-medium tracking-widest mb-4 text-apex-red uppercase">
                     Your Journey to Peak Performance Starts Here
                 </p>
@@ -99,14 +126,14 @@
 
         <section id="programs" class="py-24 bg-gym-black">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-4xl font-bold text-center mb-4 text-white uppercase">
+                <h2 class="text-4xl font-bold text-center mb-4 text-white uppercase fade-in-up">
                     Elite <span class="text-apex-red">Training</span> Programs
                 </h2>
-                <p class="text-xl text-center text-apex-gray mb-16 max-w-3xl mx-auto">
+                <p class="text-xl text-center text-apex-gray mb-16 max-w-3xl mx-auto fade-in-up">
                     Our specialized classes are designed by master trainers to guarantee results, regardless of your current fitness level.
                 </p>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                    <div class="relative p-8 bg-gym-dark border-2 border-gym-border rounded-xl shadow-2xl transition duration-300 hover:border-apex-red hover:shadow-power-glow/20">
+                    <div class="relative p-8 bg-gym-dark border-2 border-gym-border rounded-xl shadow-2xl transition duration-300 hover:border-apex-red hover:shadow-power-glow/20 fade-in-up" style="transition-delay: 0.1s;">
                         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="icon text-apex-red mb-4"><path d="M20 17H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2z"/><line x1="8" x2="8" y1="7" y2="17"/><line x1="16" x2="16" y1="7" y2="17"/></svg>
                         <h3 class="text-2xl font-bold text-white mb-2 tracking-wide">Strength Protocol</h3>
                         <p class="text-sm text-apex-red flex items-center mb-4">
@@ -115,7 +142,7 @@
                         </p>
                         <p class="text-apex-gray">Compound movements and heavy lifting designed for maximum muscle and power gains.</p>
                     </div>
-                    <div class="relative p-8 bg-gym-dark border-2 border-gym-border rounded-xl shadow-2xl transition duration-300 hover:border-apex-red hover:shadow-power-glow/20">
+                    <div class="relative p-8 bg-gym-dark border-2 border-gym-border rounded-xl shadow-2xl transition duration-300 hover:border-apex-red hover:shadow-power-glow/20 fade-in-up" style="transition-delay: 0.2s;">
                         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="icon text-apex-red mb-4"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
                         <h3 class="text-2xl font-bold text-white mb-2 tracking-wide">Cardio Endurance</h3>
                         <p class="text-sm text-apex-red flex items-center mb-4">
@@ -124,7 +151,7 @@
                         </p>
                         <p class="text-apex-gray">High-Intensity Interval Training (HIIT) focused on pushing your stamina and metabolic limits.</p>
                     </div>
-                    <div class="relative p-8 bg-gym-dark border-2 border-gym-border rounded-xl shadow-2xl transition duration-300 hover:border-apex-red hover:shadow-power-glow/20">
+                    <div class="relative p-8 bg-gym-dark border-2 border-gym-border rounded-xl shadow-2xl transition duration-300 hover:border-apex-red hover:shadow-power-glow/20 fade-in-up" style="transition-delay: 0.3s;">
                         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="icon text-apex-red mb-4"><path d="M13 2H3v20h18V8Z"/><path d="m3 2 7 6 7-6"/><path d="m3 20 7-6 7 6"/></svg>
                         <h3 class="text-2xl font-bold text-white mb-2 tracking-wide">Hybrid Conditioning</h3>
                         <p class="text-sm text-apex-red flex items-center mb-4">
@@ -135,7 +162,7 @@
                     </div>
                 </div>
                 
-                <div class="text-center mt-16">
+                <div class="text-center mt-16 fade-in-up">
                     <a href="#trial" class="relative inline-flex items-center justify-center font-bold text-lg rounded-lg transition-all duration-300 tracking-wider uppercase bg-apex-red text-white hover:bg-red-600 shadow-xl shadow-apex-red/30 px-8 py-3">
                         See Full Schedule
                     </a>
@@ -158,7 +185,7 @@
 
             <div class="absolute inset-0 flex items-center justify-center z-20">
                 
-                <div class="w-full bg-gym-black/70 backdrop-blur-sm border-y-2 border-apex-red/50 shadow-2xl shadow-apex-red/20 py-8">
+                <div class="w-full bg-gym-black/70 backdrop-blur-sm border-y-2 border-apex-red/50 shadow-2xl shadow-apex-red/20 py-8 fade-in-up">
                     
                     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         <div class="grid grid-cols-3 gap-8">
@@ -179,14 +206,16 @@
                 </div>
             </div>
         </section>
+
+
         <section id="trainers" class="py-20 bg-gym-black">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 
-                <h2 class="text-4xl font-bold text-center mb-12 text-white uppercase">
+                <h2 class="text-4xl font-bold text-center mb-12 text-white uppercase fade-in-up">
                     What Our <span class="text-apex-red">Athletes</span> Say
                 </h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="p-6 bg-gym-dark rounded-xl border border-gym-border shadow-xl h-full flex flex-col justify-between">
+                    <div class="p-6 bg-gym-dark rounded-xl border border-gym-border shadow-xl h-full flex flex-col justify-between fade-in-up" style="transition-delay: 0.1s;">
                         <div class="flex text-apex-red mb-3">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star w-4 h-4 fill-apex-red mr-1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star w-4 h-4 fill-apex-red mr-1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -200,7 +229,7 @@
                             <p class="text-sm text-apex-red">45 lbs lost</p>
                         </div>
                     </div>
-                    <div class="p-6 bg-gym-dark rounded-xl border border-gym-border shadow-xl h-full flex flex-col justify-between">
+                    <div class="p-6 bg-gym-dark rounded-xl border border-gym-border shadow-xl h-full flex flex-col justify-between fade-in-up" style="transition-delay: 0.2s;">
                         <div class="flex text-apex-red mb-3">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star w-4 h-4 fill-apex-red mr-1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star w-4 h-4 fill-apex-red mr-1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -214,7 +243,7 @@
                             <p class="text-sm text-apex-red">Unmatched Coaching</p>
                         </div>
                     </div>
-                    <div class="p-6 bg-gym-dark rounded-xl border border-gym-border shadow-xl h-full flex flex-col justify-between">
+                    <div class="p-6 bg-gym-dark rounded-xl border border-gym-border shadow-xl h-full flex flex-col justify-between fade-in-up" style="transition-delay: 0.3s;">
                          <div class="flex text-apex-red mb-3">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star w-4 h-4 fill-apex-red mr-1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star w-4 h-4 fill-apex-red mr-1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -234,15 +263,15 @@
 
         <section id="pricing" class="py-24 bg-gym-black">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-4xl font-bold text-center mb-4 text-white uppercase">
+                <h2 class="text-4xl font-bold text-center mb-4 text-white uppercase fade-in-up">
                     Commit To Your <span class="text-apex-red">Transformation</span>
                 </h2>
-                <p class="text-xl text-center text-apex-gray mb-16 max-w-3xl mx-auto">
+                <p class="text-xl text-center text-apex-gray mb-16 max-w-3xl mx-auto fade-in-up">
                     Choose the level of dedication that matches your goals. No long-term contracts.
                 </p>
 
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
-                    <div class="p-8 rounded-2xl transition duration-300 flex flex-col bg-gym-dark border border-gym-border hover:scale-[1.05] hover:shadow-[0_0_30px_rgba(239, 68, 68, 0.4)]">
+                    <div class="p-8 rounded-2xl transition duration-300 flex flex-col bg-gym-dark border border-gym-border hover:scale-[1.05] hover:shadow-[0_0_30px_rgba(239, 68, 68, 0.4)] fade-in-up" style="transition-delay: 0.1s;">
                         <h3 class="text-2xl font-bold mb-2 text-white uppercase tracking-wider">Base Access</h3>
                         <p class="text-apex-gray mb-6">Standard gym membership with full facility access.</p>
                         <div class="flex items-baseline mb-8">
@@ -259,7 +288,7 @@
                         </a>
                     </div>
 
-                    <div class="p-8 rounded-2xl transition duration-300 flex flex-col bg-gym-dark border-2 border-apex-red shadow-2xl shadow-apex-red/30 hover:scale-[1.05] hover:shadow-[0_0_40px_rgba(239, 68, 68, 0.6)]">
+                    <div class="p-8 rounded-2xl transition duration-300 flex flex-col bg-gym-dark border-2 border-apex-red shadow-2xl shadow-apex-red/30 hover:scale-[1.05] hover:shadow-intense-glow fade-in-up" style="transition-delay: 0.2s;">
                         <h3 class="text-2xl font-bold mb-2 text-white uppercase tracking-wider">Apex Elite</h3>
                         <p class="text-apex-gray mb-6">Hybrid membership with coaching and specialized classes.</p>
                         <div class="flex items-baseline mb-8">
@@ -277,7 +306,7 @@
                         </a>
                     </div>
 
-                    <div class="p-8 rounded-2xl transition duration-300 flex flex-col bg-gym-dark border border-gym-border hover:scale-[1.05] hover:shadow-[0_0_30px_rgba(239, 68, 68, 0.4)]">
+                    <div class="p-8 rounded-2xl transition duration-300 flex flex-col bg-gym-dark border border-gym-border hover:scale-[1.05] hover:shadow-[0_0_30px_rgba(239, 68, 68, 0.4)] fade-in-up" style="transition-delay: 0.3s;">
                         <h3 class="text-2xl font-bold mb-2 text-white uppercase tracking-wider">Private Coach</h3>
                         <p class="text-apex-gray mb-6">Dedicated personal trainer and completely custom regimen.</p>
                         <div class="flex items-baseline mb-8">
@@ -299,13 +328,13 @@
         </section>
 
         <section id="trial-signup" class="text-center py-20 bg-gym-black">
-            <h2 class="text-5xl font-extrabold mb-4 text-white uppercase">
+            <h2 class="text-5xl font-extrabold mb-4 text-white uppercase fade-in-up">
                 Start Your <span class="text-apex-red">7-Day Free Trial</span>
             </h2>
-            <p class="text-xl text-apex-gray mb-8">
+            <p class="text-xl text-apex-gray mb-8 fade-in-up">
                 Experience the difference. Zero obligation. 100% results.
             </p>
-            <a href="#signup" class="text-xl px-12 py-4 relative inline-flex items-center justify-center font-bold text-xl rounded-lg transition-all duration-300 tracking-wider uppercase bg-apex-red text-white hover:bg-red-600 shadow-xl shadow-apex-red/30">
+            <a href="#signup" class="text-xl px-12 py-4 relative inline-flex items-center justify-center font-bold text-xl rounded-lg transition-all duration-300 tracking-wider uppercase bg-apex-red text-white hover:bg-red-600 shadow-xl shadow-apex-red/30 fade-in-up">
                 Activate Trial Membership
             </a>
         </section>
@@ -335,6 +364,37 @@
             </div>
         </footer>
     </main>
-</body>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const elements = document.querySelectorAll('.fade-in-up');
+
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        // Opsional: stop observing setelah animasi agar performa tetap ringan
+                        observer.unobserve(entry.target); 
+                    }
+                });
+            }, {
+                rootMargin: '0px',
+                threshold: 0.1 // Mulai animasi saat 10% elemen terlihat
+            });
+
+            elements.forEach(element => {
+                observer.observe(element);
+            });
+            
+            // Perbaikan untuk Parallax Image di Hero Section
+            // Hapus tag <img> dan gunakan background-image CSS seperti yang didefinisikan di <style>
+            const heroImageDiv = document.querySelector('.hero-parallax-img');
+            if (heroImageDiv) {
+                // Hapus class opacity-30 dari div ini karena sudah ditangani oleh background-image
+                // Kita akan menangani opacity via CSS filter (atau opacity) jika diperlukan, tapi saat ini 
+                // opacity 30 sudah diatur di style global hero-parallax-img.
+            }
+        });
+    </script>
+</body>
 </html>
